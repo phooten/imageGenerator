@@ -1,8 +1,13 @@
+Helpful conversion Programs:
+	phooten/ComputerGraphics/pGeneratedBottle/Color Converter Testing/
 
 
-
+Color		|	R, G, B, A (0-255)		|		R, G, B, A (0.00 - 1.00)
+---------------------------------------------------------------------------
 
 White			232, 229, 235, 255				0.91f, 0.90f, 0.92f, 1.00f
+
+Tan				240, 239, 181, 255				0.94f, 0.94f, 0.71f, 1.00f
 
 Pink			218, 193, 209, 255				0.85f, 0.76f, 0.82f, 1.00f
 
