@@ -1,0 +1,10 @@
+Notes:
+
+
+Questions:
+- What other usere can glfwMakeContextCurrent() be used for?
+
+Errors encountered:
+	"LNK1104 cannot open file 'glfw3.lib"
+		SOLUTIONS: I was linking in the "External include directory" and not "Library Directory"
+
