@@ -27,13 +27,22 @@
     <ClCompile Include="ShaderClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VertexBufferObjectClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementBufferObjectClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArrayObjectClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="notesAndQuestions.txt">
-      <Filter>Source Files</Filter>
-    </Text>
     <Text Include="colors.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="notesAndQuestions.txt">
+      <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ShaderClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferObjectClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementBufferObjectClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArrayObjectClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

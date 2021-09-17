@@ -9,7 +9,7 @@
 		-> Jamie King's	"3D Computer Graphics Using OpenGL" on youtube. link:https://www.youtube.com/watch?v=Dyue3MzJDss&list=PLRwVmtr-pp06qT6ckboaOhnm9FxmzHpbY&index=5
 */
 
-/*!
+/* 
 	Psuedo Code Outline:
 
 	 - create pixel map trueResolution = (width*(truePix) x height*(truePix)
@@ -36,8 +36,11 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-#include"ShaderClass.h"
 
+#include"ShaderClass.h"
+#include"VertexBufferObjectClass.h"
+#include"VertexArrayObjectClass.h"
+#include"ElementBufferObjectClass.h"
 
 int main() {
 	// Variables
@@ -46,8 +49,8 @@ int main() {
 	int windowHeight = bloc * 32;
 	
 	float bottleColor[4] = { 0.85f, 0.76f, 0.82f, 1.00f };			// Pink
-	float backgroundColor[4] = { 0.94f, 0.94f, 0.71f, 1.00f };		// Tan
-	
+	//float backgroundColor[4] = { 0.94f, 0.94f, 0.71f, 1.00f };		// Tan
+	float backgroundColor[4] = { 0.94f, 0.94f, 0.71f, 1.00f };
 	float capColor[4] = { 0.08f, 0.08f, 0.08f, 1.00f };				// Black
 	float logoColor[4] = { 0.91f, 0.90f, 0.92f, 1.00f };				// White
 	
@@ -68,7 +71,7 @@ int main() {
 		
 	};
 
-	GLint windingOrder[]{
+	GLuint windingOrder[]{
 		0,1,3,			// Right half triangle
 		3,2,0			// Left half triangle
 	};
@@ -91,33 +94,19 @@ int main() {
 	// Shader Code
 	Shader ShaderProgram("default.vert", "default.frag");
 
-	// Setting up Vertex Array Buffer
-	GLuint vertexArrayBufferID;
-	GLuint verticesBufferID;
-	GLuint elementBufferID;
+	//VBO
+	VertexArrayObject VAO;
+	VAO.Bind();
 
-	// Setting up Vertices Buffer
-	glGenBuffers(1, &verticesBufferID);
-	glBindBuffer(GL_ARRAY_BUFFER, verticesBufferID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+	VertexBufferObject VBO(verts, sizeof(verts));
+	ElementBufferObject EBO(windingOrder, sizeof(windingOrder));
 
-	// Setting up Vertex Array Buffer
-	glGenVertexArrays(1, &vertexArrayBufferID);
-	glBindVertexArray(vertexArrayBufferID);												// Has to be called before glBindBuffer(GL_ELEMENT_ARRAY_BUFFER), doesnt matter before or after glBindBuffer(GL_ARRAY_BUFFER)
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);		// Describing the first Attrib
-	glEnableVertexAttribArray(0);														// Enabling First Attrib of verts - Position
+	VAO.LinkVertexBufferObject(VBO, 0);
 
-	// Setting up Element Buffer (winding order)	-> Gets linked to VertexArrayBuffer
-	glGenBuffers(1, &elementBufferID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBufferID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(windingOrder), windingOrder, GL_STATIC_DRAW);
-
+	VAO.Unbind();
+	EBO.Unbind();
+	VBO.Unbind();
 	
-	// Bind Unbind so we don't modify
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
 
 	// Main GLFW Loop
 	while (!glfwWindowShouldClose(window)) {
@@ -125,8 +114,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ShaderProgram.Activate();
 		
-		glBindVertexArray(vertexArrayBufferID);
-		
+		VAO.Bind();
 		// Draw the triangle using the GL_TRIANGLES primitive
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -135,9 +123,9 @@ int main() {
 	}
 
 	// Cleanup
-	glDeleteVertexArrays(1, &vertexArrayBufferID);
-	glDeleteBuffers(1, &verticesBufferID);
-	glDeleteBuffers(1, &elementBufferID);
+	VAO.Delete();
+	VBO.Delete();
+	EBO.Delete();
 	ShaderProgram.Delete(); 
 	glfwDestroyWindow(window);
 	glfwTerminate();

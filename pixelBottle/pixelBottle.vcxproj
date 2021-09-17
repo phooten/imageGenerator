@@ -146,9 +146,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ElementBufferObjectClass.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
+    <ClCompile Include="VertexArrayObjectClass.cpp" />
+    <ClCompile Include="VertexBufferObjectClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="colors.txt" />
@@ -159,7 +162,10 @@
     <None Include="default.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ElementBufferObjectClass.h" />
     <ClInclude Include="ShaderClass.h" />
+    <ClInclude Include="VertexArrayObjectClass.h" />
+    <ClInclude Include="VertexBufferObjectClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
