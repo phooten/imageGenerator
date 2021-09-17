@@ -13,9 +13,10 @@ Pink			218, 193, 209, 255				0.85f, 0.76f, 0.82f, 1.00f
 
 Teal			118, 217, 205, 255 				0.46f, 0.85f, 0.80f, 1.00f		Might change	
 
+Green			109, 178, 109, 255												Might change
+
 Dark blue		17, 33, 43, 255					0.07f, 0.13f, 0.17f, 1.00f		Might change
 
 Deep Purple		30, 26, 35, 255					0.12f, 0.10f, 0.14f, 1.00f
 
 Black			21, 21, 21, 255					0.08f, 0.08f, 0.08f, 1.00f
-
