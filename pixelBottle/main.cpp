@@ -47,13 +47,19 @@ int main() {
 	int bloc = 20;								// Length and width of a bloc
 	int windowWidth = bloc * 32;//11;			// Length and width of the composition based on units of bloc
 	int windowHeight = bloc * 32;
-	
-	float bottleColor[4] = { 0.85f, 0.76f, 0.82f, 1.00f };			// Pink
-	//float backgroundColor[4] = { 0.94f, 0.94f, 0.71f, 1.00f };		// Tan
-	float backgroundColor[4] = { 0.94f, 0.94f, 0.71f, 1.00f };
-	float capColor[4] = { 0.08f, 0.08f, 0.08f, 1.00f };				// Black
-	float logoColor[4] = { 0.91f, 0.90f, 0.92f, 1.00f };				// White
-	
+	GLfloat colorList[4][4] = {
+		{ 0.91f, 0.90f, 0.92f, 1.00f },		// 0 - white
+		{ 0.94f, 0.94f, 0.71f, 1.00f },		// 1 - tan
+		{ 0.85f, 0.76f, 0.82f, 1.00f },		// 2 - pink
+		{ 0.46f, 0.85f, 0.80f, 1.00f }		// 3 - black
+	};
+
+	// Color selector variables
+	int bottCS = 2;		// bottle 
+	int bgCS = 1;		// background
+	GLfloat bottColor[4] = { colorList[bottCS][0], colorList[bottCS][1], colorList[bottCS][2], colorList[bottCS][3] };
+	GLfloat bgColor[4] =   { colorList[bgCS][0],   colorList[bgCS][1],	 colorList[bgCS][2],   colorList[bgCS][3]   };
+
 	// Startup
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -62,13 +68,13 @@ int main() {
 
 
 	GLfloat verts[] = {
-		// Position
+		// Position					// Color																	
 
-		-0.75f, +0.75f, 0.0f,	// Top Left			0
-		+0.75f, +0.75f,	0.0f,	// Top Right		1
-		-0.75f, -0.75f,	0.0f,	// Bottom Left		2
-		+0.75f, -0.75f,	0.0f	// Bottom Right		3
-		
+		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
+		+0.75f, +0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
+		-0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Left		2
+		+0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Right		3
+
 	};
 
 	GLuint windingOrder[]{
@@ -110,7 +116,7 @@ int main() {
 
 	// Main GLFW Loop
 	while (!glfwWindowShouldClose(window)) {
-		glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
+		glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
 		glClear(GL_COLOR_BUFFER_BIT);
 		ShaderProgram.Activate();
 		
