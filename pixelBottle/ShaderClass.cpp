@@ -25,8 +25,8 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	GLint compileStatus;
-	GLint linkStatus;
+	//GLint compileStatus;
+	//GLint linkStatus;
 
 	glShaderSource(vertexShader, 1, &vertexSource, NULL);
 	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
@@ -37,7 +37,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 	// Checks the shader compiling code
 	//		This needs to be put in a function, but figure out how to ouput the file title.
 	//-------------------------------------------------------------------------
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
+/*	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
 	if (compileStatus != GL_TRUE) {
 
 		GLint infoLogLength;
@@ -66,7 +66,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 		delete[] buffer;
 	}
-	//-------------------------------------------------------------------------
+*/	//-------------------------------------------------------------------------
 
 
 	ID = glCreateProgram();
@@ -77,7 +77,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 	// Checks the shader compiling code
 	//		This needs to be put in a function, but figure out how to ouput the file title.
 	//-------------------------------------------------------------------------
-	glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
+/*	glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
 	if (linkStatus != GL_TRUE) {
 
 		GLint infoLogLength;
@@ -91,7 +91,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 		delete[] buffer;
 	}
-
+*/
 	//-------------------------------------------------------------------------
 
 	glDeleteShader(vertexShader);
@@ -99,7 +99,10 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 
 	/*
-		Proposed function to combine checking compiling and linking
+	*	NOTE: 
+			1. Proposed function to combine checking compiling and linking
+			2. Uncommenting the shader compile/link checks will throw allocation faults
+
 
 		5:10 into video(#17): 	https://www.youtube.com/watch?v=6ByZWqPzI70&list=PLRwVmtr-pp06qT6ckboaOhnm9FxmzHpbY&index=17
 

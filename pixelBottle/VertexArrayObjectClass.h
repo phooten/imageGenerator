@@ -10,7 +10,7 @@ class VertexArrayObject{
 
 		VertexArrayObject();
 	
-		void LinkVertexBufferObject(VertexBufferObject& VertexBufferObject, GLuint layout);
+		void LinkAttrib(VertexBufferObject& VertexBufferObject, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset);
 		void Bind();
 		void Unbind();
 		void Delete();

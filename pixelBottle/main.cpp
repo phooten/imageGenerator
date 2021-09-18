@@ -68,13 +68,23 @@ int main() {
 
 
 	GLfloat verts[] = {
-		// Position					// Color																	
+		// Position					// Color R, G, B																
+
+		//-0.75f, +0.75f, 0.0f,		1.0f, 0.0f, 0.0f, 						// Top Left			0
+		//+0.75f, +0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Top Right		1
+		//-0.75f, -0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Bottom Left		2
+		//+0.75f, -0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Bottom Right		3
+
+		//-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
+		//+0.75f, +0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
+		//-0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Left		2
+		//+0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Right		3
+		
 
 		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
 		+0.75f, +0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
-		-0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Left		2
-		+0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Right		3
-
+		-0.75f, -0.75f,	0.0f,		1.0f, 1.0f, 1.0f, 						// Bottom Left		2
+		+0.75f, -0.75f,	0.0f,		1.0f, 1.0f, 1.0f, 						// Bottom Right		3
 	};
 
 	GLuint windingOrder[]{
@@ -107,7 +117,8 @@ int main() {
 	VertexBufferObject VBO(verts, sizeof(verts));
 	ElementBufferObject EBO(windingOrder, sizeof(windingOrder));
 
-	VAO.LinkVertexBufferObject(VBO, 0);
+	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0);
+	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 
 	VAO.Unbind();
 	EBO.Unbind();
