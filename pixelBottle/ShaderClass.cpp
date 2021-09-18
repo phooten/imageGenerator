@@ -24,21 +24,104 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 	const char* fragmentSource = fragmentCode.c_str();
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexSource, NULL);
-	glCompileShader(vertexShader);
-
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	GLint compileStatus;
+	GLint linkStatus;
+
+	glShaderSource(vertexShader, 1, &vertexSource, NULL);
 	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
+
+	glCompileShader(vertexShader);
 	glCompileShader(fragmentShader);
+	
+	// Checks the shader compiling code
+	//		This needs to be put in a function, but figure out how to ouput the file title.
+	//-------------------------------------------------------------------------
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
+	if (compileStatus != GL_TRUE) {
+
+		GLint infoLogLength;
+		glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
+		GLchar* buffer = new GLchar[infoLogLength];
+
+		GLsizei bufferSize;
+		glGetShaderInfoLog(vertexShader, infoLogLength, &bufferSize, buffer);
+
+		std::cout << "Vertex Shader - Compile: "<< std::endl << buffer << std::endl;
+
+		delete[] buffer;
+	}
+
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &compileStatus);
+	if (compileStatus != GL_TRUE) {
+
+		GLint infoLogLength;
+		glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &infoLogLength);
+		GLchar* buffer = new GLchar[infoLogLength];
+
+		GLsizei bufferSize;
+		glGetShaderInfoLog(fragmentShader, infoLogLength, &bufferSize, buffer);
+
+		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
+
+		delete[] buffer;
+	}
+	//-------------------------------------------------------------------------
+
 
 	ID = glCreateProgram();
 	glAttachShader(ID, vertexShader);
 	glAttachShader(ID, fragmentShader);
 	glLinkProgram(ID);
 
+	// Checks the shader compiling code
+	//		This needs to be put in a function, but figure out how to ouput the file title.
+	//-------------------------------------------------------------------------
+	glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
+	if (linkStatus != GL_TRUE) {
+
+		GLint infoLogLength;
+		glGetShaderiv(ID, GL_INFO_LOG_LENGTH, &infoLogLength);
+		GLchar* buffer = new GLchar[infoLogLength];
+
+		GLsizei bufferSize;
+		glGetProgramInfoLog(ID, infoLogLength, &bufferSize, buffer);
+
+		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
+
+		delete[] buffer;
+	}
+
+	//-------------------------------------------------------------------------
+
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+
+	/*
+		Proposed function to combine checking compiling and linking
+
+		5:10 into video(#17): 	https://www.youtube.com/watch?v=6ByZWqPzI70&list=PLRwVmtr-pp06qT6ckboaOhnm9FxmzHpbY&index=17
+
+		bool checkStatus(GLuint objectID, PFNGLGETSHADERIVPROC objectPropertyGetterFunc, PFNGLGETSHADERINFOLOGPROC getInfoLogFunc, GLenum statusType){
+				GLint status;
+				objectPropertyGetterFunc(objectID, statusType, &compileStatus);
+				if (compileStatus != GL_TRUE) {
+
+					GLint infoLogLength;
+					objectPropertyGetterFunc(objectID, GL_INFO_LOG_LENGTH, &infoLogLength);
+					GLchar* buffer = new GLchar[infoLogLength];
+
+					GLsizei bufferSize;
+					getInfoLogFunc(objectID, infoLogLength, &bufferSize, buffer);
+
+					std::cout << "Vertex Shader - Compile: "<< std::endl << buffer << std::endl;
+
+					delete[] buffer;
+				}
+
+		}
+	*/
 }
 
 void Shader::Activate() {
