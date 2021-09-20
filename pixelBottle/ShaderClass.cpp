@@ -29,15 +29,59 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 	//GLint linkStatus;
 
 	glShaderSource(vertexShader, 1, &vertexSource, NULL);
-	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
-
 	glCompileShader(vertexShader);
+	compileErrors(vertexShader, "VERTEX");
+
+	glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
 	glCompileShader(fragmentShader);
+	compileErrors(fragmentShader, "FRAGMENT");
 	
-	// Checks the shader compiling code
-	//		This needs to be put in a function, but figure out how to ouput the file title.
-	//-------------------------------------------------------------------------
-/*	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
+	ID = glCreateProgram();
+	glAttachShader(ID, vertexShader);
+	glAttachShader(ID, fragmentShader);
+	glLinkProgram(ID);
+	compileErrors(ID, "PROGRAM");
+
+	glDeleteShader(vertexShader);
+	glDeleteShader(fragmentShader);
+
+}
+
+void Shader::Activate() {
+	glUseProgram(ID);
+}
+
+void Shader::Delete() {
+	glDeleteProgram(ID);
+}
+
+void Shader::compileErrors(unsigned int shader, const char* type) {
+	// Variables
+	const unsigned int logLen = 1024;
+	GLint compileStatus;
+	char infoLog[logLen];
+	//GLchar* buffer = new GLchar[logLen];
+	
+	// Checks for compile vs linking
+	if (type != "PROGRAM") {
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
+		if (compileStatus == GL_FALSE) {
+			glGetShaderInfoLog(shader, logLen, NULL, infoLog);
+			std::cout << "SHADER COMPILATION ERROR for: " << type << std::endl << infoLog << std::endl;
+			//return false;
+		} 
+	} else {
+		glGetProgramiv(shader, GL_LINK_STATUS, &compileStatus);
+		if (compileStatus == GL_FALSE) {
+			glGetProgramInfoLog(shader, logLen, NULL, infoLog);
+			std::cout << "SHADER LINKING ERROR for: " << type << std::endl << infoLog << std::endl;
+			//return false;
+		}
+	}
+
+	
+/*
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
 	if (compileStatus != GL_TRUE) {
 
 		GLint infoLogLength;
@@ -47,7 +91,7 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 		GLsizei bufferSize;
 		glGetShaderInfoLog(vertexShader, infoLogLength, &bufferSize, buffer);
 
-		std::cout << "Vertex Shader - Compile: "<< std::endl << buffer << std::endl;
+		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
 
 		delete[] buffer;
 	}
@@ -66,71 +110,6 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 
 		delete[] buffer;
 	}
-*/	//-------------------------------------------------------------------------
-
-
-	ID = glCreateProgram();
-	glAttachShader(ID, vertexShader);
-	glAttachShader(ID, fragmentShader);
-	glLinkProgram(ID);
-
-	// Checks the shader compiling code
-	//		This needs to be put in a function, but figure out how to ouput the file title.
-	//-------------------------------------------------------------------------
-/*	glGetProgramiv(ID, GL_LINK_STATUS, &linkStatus);
-	if (linkStatus != GL_TRUE) {
-
-		GLint infoLogLength;
-		glGetShaderiv(ID, GL_INFO_LOG_LENGTH, &infoLogLength);
-		GLchar* buffer = new GLchar[infoLogLength];
-
-		GLsizei bufferSize;
-		glGetProgramInfoLog(ID, infoLogLength, &bufferSize, buffer);
-
-		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
-
-		delete[] buffer;
-	}
 */
-	//-------------------------------------------------------------------------
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-
-	/*
-	*	NOTE: 
-			1. Proposed function to combine checking compiling and linking
-			2. Uncommenting the shader compile/link checks will throw allocation faults
-
-
-		5:10 into video(#17): 	https://www.youtube.com/watch?v=6ByZWqPzI70&list=PLRwVmtr-pp06qT6ckboaOhnm9FxmzHpbY&index=17
-
-		bool checkStatus(GLuint objectID, PFNGLGETSHADERIVPROC objectPropertyGetterFunc, PFNGLGETSHADERINFOLOGPROC getInfoLogFunc, GLenum statusType){
-				GLint status;
-				objectPropertyGetterFunc(objectID, statusType, &compileStatus);
-				if (compileStatus != GL_TRUE) {
-
-					GLint infoLogLength;
-					objectPropertyGetterFunc(objectID, GL_INFO_LOG_LENGTH, &infoLogLength);
-					GLchar* buffer = new GLchar[infoLogLength];
-
-					GLsizei bufferSize;
-					getInfoLogFunc(objectID, infoLogLength, &bufferSize, buffer);
-
-					std::cout << "Vertex Shader - Compile: "<< std::endl << buffer << std::endl;
-
-					delete[] buffer;
-				}
-
-		}
-	*/
-}
-
-void Shader::Activate() {
-	glUseProgram(ID);
-}
-
-void Shader::Delete() {
-	glDeleteProgram(ID);
+	return;
 }

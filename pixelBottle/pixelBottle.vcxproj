@@ -150,6 +150,8 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
+    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="TextureClass.cpp" />
     <ClCompile Include="VertexArrayObjectClass.cpp" />
     <ClCompile Include="VertexBufferObjectClass.cpp" />
   </ItemGroup>
@@ -164,8 +166,13 @@
   <ItemGroup>
     <ClInclude Include="ElementBufferObjectClass.h" />
     <ClInclude Include="ShaderClass.h" />
+    <ClInclude Include="TextureClass.h" />
     <ClInclude Include="VertexArrayObjectClass.h" />
     <ClInclude Include="VertexBufferObjectClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\pop_cat.png" />
+    <Image Include="snatti89_sunset1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

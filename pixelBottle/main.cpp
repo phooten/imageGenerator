@@ -36,8 +36,10 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
+#include<stb/stb_image.h>
 
 #include"ShaderClass.h"
+#include"TextureClass.h"
 #include"VertexBufferObjectClass.h"
 #include"VertexArrayObjectClass.h"
 #include"ElementBufferObjectClass.h"
@@ -70,26 +72,21 @@ int main() {
 	GLfloat verts[] = {
 		// Position					// Color R, G, B																
 
-		//-0.75f, +0.75f, 0.0f,		1.0f, 0.0f, 0.0f, 						// Top Left			0
-		//+0.75f, +0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Top Right		1
-		//-0.75f, -0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Bottom Left		2
-		//+0.75f, -0.75f,	0.0f,		1.0f, 0.0f, 0.0f, 						// Bottom Right		3
-
-		//-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
-		//+0.75f, +0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
-		//-0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Left		2
-		//+0.75f, -0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Bottom Right		3
+		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		0.0f, 1.0f,		// Top Left			0
+		+0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		1.0f, 1.0f,		// Top Right		1
+		-0.75f, -0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		0.0f, 0.0f,		// Bottom Left		2
+		+0.75f, -0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		1.0f, 0.0f		// Bottom Right		3
 		
 
-		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
-		+0.75f, +0.75f,	0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
-		-0.75f, -0.75f,	0.0f,		1.0f, 1.0f, 1.0f, 						// Bottom Left		2
-		+0.75f, -0.75f,	0.0f,		1.0f, 1.0f, 1.0f, 						// Bottom Right		3
+		//-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
+		//+0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
+		//-0.75f, -0.75f, 0.0f,		1.0f, 1.0f, 1.0f, 												// Bottom Left		2
+		//+0.75f, -0.75f, 0.0f,		1.0f, 1.0f, 1.0f, 												// Bottom Right		3
 	};
 
 	GLuint windingOrder[]{
-		0,1,3,			// Right half triangle
-		3,2,0			// Left half triangle
+		0, 1, 3,	// Right Half Triangle
+		0, 2, 3		// Left Half Triangle
 	};
 
 
@@ -109,7 +106,11 @@ int main() {
 
 	// Shader Code
 	Shader ShaderProgram("default.vert", "default.frag");
+	GLuint uniScaleID = glGetUniformLocation(ShaderProgram.ID, "uScale");
+	GLfloat uScale = 0.5f;
 
+
+	
 	//VBO
 	VertexArrayObject VAO;
 	VAO.Bind();
@@ -117,20 +118,26 @@ int main() {
 	VertexBufferObject VBO(verts, sizeof(verts));
 	ElementBufferObject EBO(windingOrder, sizeof(windingOrder));
 
-	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0);
-	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
+	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	VAO.LinkAttrib(VBO, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 
 	VAO.Unbind();
 	EBO.Unbind();
 	VBO.Unbind();
 	
 
+	Texture Snatti("snatti89_sunset1.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Snatti.uniTex(ShaderProgram, "uTex0", 0);
+
+
 	// Main GLFW Loop
 	while (!glfwWindowShouldClose(window)) {
 		glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
 		glClear(GL_COLOR_BUFFER_BIT);
 		ShaderProgram.Activate();
-		
+		glUniform1f(uniScaleID, uScale);
+		Snatti.Bind();
 		VAO.Bind();
 		// Draw the triangle using the GL_TRIANGLES primitive
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -143,6 +150,7 @@ int main() {
 	VAO.Delete();
 	VBO.Delete();
 	EBO.Delete();
+	Snatti.Delete();
 	ShaderProgram.Delete(); 
 	glfwDestroyWindow(window);
 	glfwTerminate();
