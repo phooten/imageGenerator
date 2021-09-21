@@ -1,0 +1,1 @@
+Pixel data are presented as 8- 16- or 32-bit int (signed or unsigned), 16- 32- or 64-bit float. NOTHING ELSE

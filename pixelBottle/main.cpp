@@ -36,7 +36,8 @@
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
-#include<stb/stb_image.h>
+//#include<stb/stb_image.h>
+#include<OpenImageIO/imageio.h>
 
 #include"ShaderClass.h"
 #include"TextureClass.h"
@@ -62,13 +63,6 @@ int main() {
 	GLfloat bottColor[4] = { colorList[bottCS][0], colorList[bottCS][1], colorList[bottCS][2], colorList[bottCS][3] };
 	GLfloat bgColor[4] =   { colorList[bgCS][0],   colorList[bgCS][1],	 colorList[bgCS][2],   colorList[bgCS][3]   };
 
-	// Startup
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
 	GLfloat verts[] = {
 		// Position					// Color R, G, B																
 
@@ -76,7 +70,6 @@ int main() {
 		+0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		1.0f, 1.0f,		// Top Right		1
 		-0.75f, -0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		0.0f, 0.0f,		// Bottom Left		2
 		+0.75f, -0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		1.0f, 0.0f		// Bottom Right		3
-		
 
 		//-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Left			0
 		//+0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2], 						// Top Right		1
@@ -88,6 +81,15 @@ int main() {
 		0, 1, 3,	// Right Half Triangle
 		0, 2, 3		// Left Half Triangle
 	};
+
+
+
+	// Startup
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 
 
 	// Creates and Validates window
@@ -125,9 +127,11 @@ int main() {
 	VAO.Unbind();
 	EBO.Unbind();
 	VBO.Unbind();
-	
 
-	Texture Snatti("snatti89_sunset1.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	
+	Texture Snatti("snatti89_sunset1.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_UNSIGNED_BYTE);
+//	Texture Snatti("pop_cat.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_UNSIGNED_BYTE);
+
 	Snatti.uniTex(ShaderProgram, "uTex0", 0);
 
 

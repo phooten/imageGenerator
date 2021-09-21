@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{86c9d7b1-c344-441b-834a-ab7714a01e74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Documents">
+      <UniqueIdentifier>{67414a51-b7a0-4c93-8cd7-f33fd3516c80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,13 +48,19 @@
     <ClCompile Include="TextureClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ImageFormatLookupClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="colors.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Documents</Filter>
+    </Text>
+    <Text Include="OIIOComments.txt">
+      <Filter>Resource Files\Documents</Filter>
     </Text>
     <Text Include="notesAndQuestions.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Documents</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextureClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageFormatLookup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
