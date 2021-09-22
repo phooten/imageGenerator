@@ -1,7 +1,7 @@
 #include"TextureClass.h"
 
 
-Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum pixelType) {
+Texture::Texture(const char* image, GLenum texType, GLenum pixelType) {
 	// Variables
 	std::string imgFormat;
 	const char* imgFormatPtr;
@@ -51,7 +51,6 @@ Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum pixelTyp
 	in->close();
 	
 	glGenTextures(1, &ID);
-	glActiveTexture(slot);
 	glBindTexture(texType, ID);
 
 
@@ -62,7 +61,7 @@ Texture::Texture(const char* image, GLenum texType, GLenum slot, GLenum pixelTyp
 	glTexParameteri(texType, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 	// For: snatti89_sunset1.png: glTexImage2D(texType, 0, GL_RGBA, xres, yres, 0, format, pixelType, &pixels[0]);
-	glTexImage2D(texType, 0, GL_RGBA, xres, yres, 0, format, pixelType, &pixels[0]);
+	glTexImage2D(texType, 0, GL_RGBA8, xres, yres, 0, format, pixelType, &pixels[0]);
 	
 	
 	glGenerateMipmap(texType);
@@ -79,7 +78,8 @@ void Texture::uniTex(Shader& shader, const char* uniform, GLuint unit) {
 	glUniform1i(texUni, unit);
 }
 
-void Texture::Bind() {
+void Texture::Bind(unsigned int slot /* = 0 */) {
+	glActiveTexture(GL_TEXTURE0 + slot);
 	glBindTexture(type, ID);
 }
 

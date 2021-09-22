@@ -12,10 +12,10 @@ class Texture {
 public:
 	GLuint ID;
 	GLenum type;
-	Texture(const char* image, GLenum texType, GLenum slot, GLenum pixelType);
+	Texture(const char* image, GLenum texType, GLenum pixelType);
 
 	void uniTex(Shader& shader, const char* uniform, GLuint unit);
-	void Bind();
+	void Bind(unsigned int slot = 0);		// If this isn't specified, it will initialize to 0
 	void Unbind();
 	void Delete();
 };
