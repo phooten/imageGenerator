@@ -162,8 +162,9 @@
     <Text Include="notesAndQuestions.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.frag" />
-    <None Include="default.vert" />
+    <None Include="basic.shader" />
+    <None Include="fragment.shader" />
+    <None Include="vertex.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ElementBufferObjectClass.h" />
@@ -174,7 +175,9 @@
     <ClInclude Include="VertexBufferObjectClass.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Desktop\Photoshop\NFT\Pixel Waterbottle\pixilatedWaterBottle.png" />
     <Image Include="..\..\..\..\Desktop\pop_cat.png" />
+    <Image Include="..\..\..\..\Desktop\snatti89_sunset.png" />
     <Image Include="snatti89_sunset1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

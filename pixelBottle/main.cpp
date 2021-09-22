@@ -38,6 +38,9 @@
 #include<GLFW/glfw3.h>
 //#include<stb/stb_image.h>
 #include<OpenImageIO/imageio.h>
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>					//!!!!!!!!! tutorial 7, 4 minutes in
 
 #include"ShaderClass.h"
 #include"TextureClass.h"
@@ -64,7 +67,7 @@ int main() {
 	GLfloat bgColor[4] =   { colorList[bgCS][0],   colorList[bgCS][1],	 colorList[bgCS][2],   colorList[bgCS][3]   };
 
 	GLfloat verts[] = {
-		// Position					// Color R, G, B																
+		// Position					// Color R, G, B							  // Texture Coords							
 
 		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		0.0f, 1.0f,		// Top Left			0
 		+0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		1.0f, 1.0f,		// Top Right		1
@@ -82,7 +85,8 @@ int main() {
 		0, 2, 3		// Left Half Triangle
 	};
 
-
+	// Blending
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Startup
 	glfwInit();
@@ -107,7 +111,7 @@ int main() {
 	
 
 	// Shader Code
-	Shader ShaderProgram("default.vert", "default.frag");
+	Shader ShaderProgram("vertex.shader", "fragment.shader");
 	GLuint uniScaleID = glGetUniformLocation(ShaderProgram.ID, "uScale");
 	GLfloat uScale = 0.5f;
 
@@ -128,8 +132,8 @@ int main() {
 	EBO.Unbind();
 	VBO.Unbind();
 
-	
-	Texture Snatti("snatti89_sunset1.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_UNSIGNED_BYTE);
+	Texture Snatti("pixilatedWaterBottle.png", GL_TEXTURE_2D, GL_UNSIGNED_BYTE);
+//	Texture Snatti("snatti89_sunset1.png", GL_TEXTURE_2D, GL_UNSIGNED_BYTE);
 //	Texture Snatti("pop_cat.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_UNSIGNED_BYTE);
 
 	Snatti.uniTex(ShaderProgram, "uTex0", 0);

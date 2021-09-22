@@ -64,10 +64,13 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.vert">
+    <None Include="vertex.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="default.frag">
+    <None Include="fragment.shader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="basic.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -96,6 +99,12 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="snatti89_sunset1.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\snatti89_sunset.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\Photoshop\NFT\Pixel Waterbottle\pixilatedWaterBottle.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

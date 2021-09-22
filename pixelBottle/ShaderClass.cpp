@@ -60,7 +60,6 @@ void Shader::compileErrors(unsigned int shader, const char* type) {
 	const unsigned int logLen = 1024;
 	GLint compileStatus;
 	char infoLog[logLen];
-	//GLchar* buffer = new GLchar[logLen];
 	
 	// Checks for compile vs linking
 	if (type != "PROGRAM") {
@@ -79,37 +78,6 @@ void Shader::compileErrors(unsigned int shader, const char* type) {
 		}
 	}
 
-	
-/*
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &compileStatus);
-	if (compileStatus != GL_TRUE) {
 
-		GLint infoLogLength;
-		glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-		GLchar* buffer = new GLchar[infoLogLength];
-
-		GLsizei bufferSize;
-		glGetShaderInfoLog(vertexShader, infoLogLength, &bufferSize, buffer);
-
-		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
-
-		delete[] buffer;
-	}
-
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &compileStatus);
-	if (compileStatus != GL_TRUE) {
-
-		GLint infoLogLength;
-		glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-		GLchar* buffer = new GLchar[infoLogLength];
-
-		GLsizei bufferSize;
-		glGetShaderInfoLog(fragmentShader, infoLogLength, &bufferSize, buffer);
-
-		std::cout << "Vertex Shader - Compile: " << std::endl << buffer << std::endl;
-
-		delete[] buffer;
-	}
-*/
 	return;
 }

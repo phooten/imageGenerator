@@ -1,10 +1,26 @@
 Notes:
+	TEXTURES:
+		* Internal Format vs Format:
+				Format is how OpenGl will deal with data
+				Internal Format is how image data is stored
+		* Links:
+				The Cherno: https://www.youtube.com/watch?v=n4k7ANAFsIQ
+
+	SHADERS:
+		* .shader helps debug files in msvs
+
 
 
 Questions:
 - What other usere can glfwMakeContextCurrent() be used for?
 
+
+
+
 Errors encountered:
-	"LNK1104 cannot open file 'glfw3.lib"
-		SOLUTIONS: I was linking in the "External include directory" and not "Library Directory"
+	*	"LNK1104 cannot open file 'glfw3.lib"
+			SOLUTIONS: 
+				I was linking in the "External include directory" and not "Library Directory"
+
+	*	Non-square PNG doens't load correctly. "snatti89_sunset.png" (non square, RGB) vs "snatti89_sunset1.png" (sqaure 512x512 pixels, RGB)
 
