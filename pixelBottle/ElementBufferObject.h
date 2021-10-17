@@ -1,5 +1,5 @@
-#ifndef ELEMENT_BUFFER_OBJECT_CLASS_H
-#define ELEMENT_BUFFER_OBJECT_CLASS_H
+#ifndef ELEMENT_BUFFER_OBJECT_H
+#define ELEMENT_BUFFER_OBJECT_H
 
 #include<glad/glad.h>
 
@@ -15,4 +15,4 @@ class ElementBufferObject {
 };
 
 
-#endif // !ELEMENT_BUFFER_OBJECT_CLASS_H
+#endif // !ELEMENT_BUFFER_OBJECT_H

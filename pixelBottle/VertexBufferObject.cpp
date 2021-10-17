@@ -1,4 +1,4 @@
-#include"VertexBufferObjectClass.h"
+#include"VertexBufferObject.h"
 
 VertexBufferObject::VertexBufferObject(GLfloat* vertices, GLsizeiptr size) {
 	// Setting up Vertices Buffer

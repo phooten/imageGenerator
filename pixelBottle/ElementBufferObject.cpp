@@ -1,4 +1,4 @@
-#include"ElementBufferObjectClass.h"
+#include"ElementBufferObject.h"
 
 ElementBufferObject::ElementBufferObject(GLuint* windingOrder, GLsizeiptr size) {
 	// Setting up Element Buffer (winding order)	-> Gets linked to VertexArrayBuffer

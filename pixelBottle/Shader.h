@@ -1,5 +1,5 @@
-#ifndef SHADER_CLASS_H
-#define SHADER_CLASS_H
+#ifndef SHADER_H
+#define SHADER_H
 
 
 #include<glad/glad.h>
@@ -27,4 +27,4 @@ class Shader {
 };
 
 
-#endif // !SHADER_CLASS_H
+#endif // !SHADER_H

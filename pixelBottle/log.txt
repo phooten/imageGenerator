@@ -1,0 +1,12 @@
+[ 10-26-2021 ]
+	-	I've been adding logs to my other github projects to help track what I've done.
+		Its been 24 Days so I wanted to track this so next time have a while between 
+		working on it, I will know where I left off. 
+	-	The last thing I remember working on was getting different png images to load 
+		which seemed to depend on how the program saved it. I had issues when saving
+		from 3D paint, but not from photoshop.
+	-	I am leaning toward working through concepts that victor gordon teaches, and 
+		using jamie king as an explaination suppliment. I think I'd use this program
+		to do that so it would be up on github, and I'd try to make adjustments
+		to cater to my own needs. Once done, I can make a copy and enhance what I 
+		need to and take out the additional stuff from the tutorials. 

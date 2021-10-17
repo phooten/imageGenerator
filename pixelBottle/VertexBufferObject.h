@@ -1,5 +1,5 @@
-#ifndef VERTEX_BUFFER_OBJECT_CLASS_H
-#define VERTEX_BUFFER_OBJECT_CLASS_H
+#ifndef VERTEX_BUFFER_OBJECT_H
+#define VERTEX_BUFFER_OBJECT_H
 
 #include<glad/glad.h>
 
@@ -16,4 +16,4 @@ class VertexBufferObject {
 	private:
 };
 
-#endif // !VERTEX_BUFFER_OBJECT_CLASS_H
+#endif // !VERTEX_BUFFER_OBJECT_H

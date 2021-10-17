@@ -146,18 +146,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ElementBufferObjectClass.cpp" />
+    <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="ImageFormatLookupClass.cpp" />
+    <ClCompile Include="ImageFormatLookup.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ShaderClass.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb.cpp" />
-    <ClCompile Include="TextureClass.cpp" />
-    <ClCompile Include="VertexArrayObjectClass.cpp" />
-    <ClCompile Include="VertexBufferObjectClass.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="VertexArrayObject.cpp" />
+    <ClCompile Include="VertexBufferObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="colors.txt" />
+    <Text Include="log.txt" />
     <Text Include="OIIOComments.txt" />
     <Text Include="notesAndQuestions.txt" />
   </ItemGroup>
@@ -167,12 +168,12 @@
     <None Include="vertex.shader" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ElementBufferObjectClass.h" />
+    <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="ImageFormatLookup.h" />
-    <ClInclude Include="ShaderClass.h" />
-    <ClInclude Include="TextureClass.h" />
-    <ClInclude Include="VertexArrayObjectClass.h" />
-    <ClInclude Include="VertexBufferObjectClass.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="VertexArrayObject.h" />
+    <ClInclude Include="VertexBufferObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Desktop\Photoshop\NFT\Pixel Waterbottle\pixilatedWaterBottle.png" />
