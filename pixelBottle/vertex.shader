@@ -8,6 +8,9 @@ out vec3 fColor;
 out vec2 fTexCoord;
 
 uniform float uScale;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 proj;
 
 void main()
 {

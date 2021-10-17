@@ -1,11 +1,11 @@
-#ifndef TEXTURE_CLASS_H
-#define TEXTURE_CLASS_H
+#ifndef TEXTURE_H
+#define TEXTURE_H
 
 #include <string.h>
 #include<glad/glad.h>
 #include<stb/stb_image.h>
 #include<OpenImageIO/imageio.h>
-#include"ShaderClass.h"
+#include"Shader.h"
 #include"ImageFormatLookup.h"
 
 class Texture {
@@ -21,4 +21,4 @@ public:
 };
 
 
-#endif // !TEXTURE_CLASS_H
+#endif // !TEXTURE_H

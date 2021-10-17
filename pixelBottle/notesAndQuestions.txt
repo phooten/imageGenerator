@@ -1,4 +1,4 @@
-Notes:
+NOTES:
 	TEXTURES:
 		* Internal Format vs Format:
 				Format is how OpenGl will deal with data
@@ -11,16 +11,31 @@ Notes:
 
 
 
-Questions:
-- What other usere can glfwMakeContextCurrent() be used for?
+
+
+QUESTIONS:
+	- What other usere can glfwMakeContextCurrent() be used for?
 
 
 
 
-Errors encountered:
+
+
+ERRORS ENCOUNTERED:
 	*	"LNK1104 cannot open file 'glfw3.lib"
 			SOLUTIONS: 
 				I was linking in the "External include directory" and not "Library Directory"
 
 	*	Non-square PNG doens't load correctly. "snatti89_sunset.png" (non square, RGB) vs "snatti89_sunset1.png" (sqaure 512x512 pixels, RGB)
+
+
+
+
+REFERENECES:
+	-	"Dealing with Errors in OpenGL" - The cherno: https://www.youtube.com/watch?v=FBbPWSOQ0-w
+				#define ASSERT(x) if (!(x)) __debugbreak()
+				#define GLCall(x) GLClearError()
+				static void GLClearError() 
+				static bool GLLogCall(const char* function, const char* file, int line) 
+	
 

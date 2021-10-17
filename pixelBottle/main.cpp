@@ -42,11 +42,37 @@
 #include<glm/gtc/matrix_transform.hpp>
 #include<glm/gtc/type_ptr.hpp>					//!!!!!!!!! tutorial 7, 4 minutes in
 
-#include"ShaderClass.h"
-#include"TextureClass.h"
-#include"VertexBufferObjectClass.h"
-#include"VertexArrayObjectClass.h"
-#include"ElementBufferObjectClass.h"
+#include"Shader.h"
+#include"Texture.h"
+#include"VertexBufferObject.h"
+#include"VertexArrayObject.h"
+#include"ElementBufferObject.h"
+
+#define ASSERT(x) if (!(x)) __debugbreak();
+#define GLCall(x) GLClearError();\
+				  x;\
+				  ASSERT(GLLogCall(#x, __FILE__, __LINE__));
+
+/*
+	Puropse:	clear prior errors before wrapping around gl function calls to help find errors.
+				* See references: Documents -> notes.txt -> References
+*/
+static void GLClearError() {
+	while (glGetError() != GL_NO_ERROR);
+}
+
+/*
+	Puropse:	Wrap around gl function calls to help find errors.
+				* See references: Documents -> notes.txt -> References
+*/
+static bool GLLogCall(const char* function, const char* file, int line) {
+	while (GLenum error = glGetError()) {
+		std::cout << "[OpenGL Error] (" << error << "): " << function << " " << file << ":" << line << std::endl;
+		return false;
+	}
+	return true;
+}
+
 
 int main() {
 	// Variables
@@ -54,19 +80,19 @@ int main() {
 	int windowWidth = bloc * 32;//11;			// Length and width of the composition based on units of bloc
 	int windowHeight = bloc * 32;
 	GLfloat colorList[4][4] = {
-		{ 0.91f, 0.90f, 0.92f, 1.00f },		// 0 - white
-		{ 0.94f, 0.94f, 0.71f, 1.00f },		// 1 - tan
-		{ 0.85f, 0.76f, 0.82f, 1.00f },		// 2 - pink
-		{ 0.46f, 0.85f, 0.80f, 1.00f }		// 3 - black
+		{ 0.91f, 0.90f, 0.92f, 1.00f },			// 0 - white
+		{ 0.94f, 0.94f, 0.71f, 1.00f },			// 1 - tan
+		{ 0.85f, 0.76f, 0.82f, 1.00f },			// 2 - pink
+		{ 0.46f, 0.85f, 0.80f, 1.00f }			// 3 - black
 	};
 
 	// Color selector variables
-	int bottCS = 2;		// bottle 
-	int bgCS = 1;		// background
+	int bottCS = 2;								// bottle 
+	int bgCS = 1;								// background
 	GLfloat bottColor[4] = { colorList[bottCS][0], colorList[bottCS][1], colorList[bottCS][2], colorList[bottCS][3] };
 	GLfloat bgColor[4] =   { colorList[bgCS][0],   colorList[bgCS][1],	 colorList[bgCS][2],   colorList[bgCS][3]   };
 
-	GLfloat verts[] = {
+	GLfloat vertex[] = {
 		// Position					// Color R, G, B							  // Texture Coords							
 
 		-0.75f, +0.75f, 0.0f,		bottColor[0], bottColor[1], bottColor[2],		0.0f, 1.0f,		// Top Left			0
@@ -80,9 +106,9 @@ int main() {
 		//+0.75f, -0.75f, 0.0f,		1.0f, 1.0f, 1.0f, 												// Bottom Right		3
 	};
 
-	GLuint windingOrder[]{
-		0, 1, 3,	// Right Half Triangle
-		0, 2, 3		// Left Half Triangle
+	GLuint indices[]{
+		0, 1, 3,								// Right Half Triangle
+		0, 2, 3									// Left Half Triangle
 	};
 
 	// Blending
@@ -121,8 +147,8 @@ int main() {
 	VertexArrayObject VAO;
 	VAO.Bind();
 
-	VertexBufferObject VBO(verts, sizeof(verts));
-	ElementBufferObject EBO(windingOrder, sizeof(windingOrder));
+	VertexBufferObject VBO(vertex, sizeof(vertex));
+	ElementBufferObject EBO(indices, sizeof(indices));
 
 	VAO.LinkAttrib(VBO, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
 	VAO.LinkAttrib(VBO, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -144,14 +170,18 @@ int main() {
 		glClearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
 		glClear(GL_COLOR_BUFFER_BIT);
 		ShaderProgram.Activate();
+		
+		glm::mat4 model = glm::mat4(1.0f);
+		glm::mat4 view = glm::mat4(1.0f);
+		glm::mat4 proj = glm::mat4(1.0f);
+		
 		glUniform1f(uniScaleID, uScale);
 		Snatti.Bind();
 		VAO.Bind();
 		// Draw the triangle using the GL_TRIANGLES primitive
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+		GLCall(glfwSwapBuffers(window));
+		GLCall(glfwPollEvents());
 	}
 
 	// Cleanup

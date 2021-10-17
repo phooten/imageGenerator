@@ -1,8 +1,8 @@
-#ifndef VERTEX_ARRAY_OBJECT_CLASS_H
-#define VERTEX_ARRAY_OBJECT_CLASS_H
+#ifndef VERTEX_ARRAY_OBJECT_H
+#define VERTEX_ARRAY_OBJECT_H
 
 #include<glad/glad.h>
-#include"VertexBufferObjectClass.h"
+#include"VertexBufferObject.h"
 
 class VertexArrayObject{
 	public:
@@ -18,5 +18,5 @@ class VertexArrayObject{
 	private:
 };
 
-#endif // !VERTEX_ARRAY_OBJECT_CLASS_H
+#endif // !VERTEX_ARRAY_OBJECT_H
 
