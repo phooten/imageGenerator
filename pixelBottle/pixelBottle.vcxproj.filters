@@ -59,7 +59,7 @@
     <Text Include="OIIOComments.txt">
       <Filter>Resource Files\Documents</Filter>
     </Text>
-    <Text Include="notesAndQuestions.txt">
+    <Text Include="notes.txt">
       <Filter>Resource Files\Documents</Filter>
     </Text>
     <Text Include="log.txt">
@@ -94,6 +94,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImageFormatLookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Macros.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

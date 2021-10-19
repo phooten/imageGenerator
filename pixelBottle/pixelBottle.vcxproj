@@ -160,7 +160,7 @@
     <Text Include="colors.txt" />
     <Text Include="log.txt" />
     <Text Include="OIIOComments.txt" />
-    <Text Include="notesAndQuestions.txt" />
+    <Text Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="basic.shader" />
@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="ImageFormatLookup.h" />
+    <ClInclude Include="Macros.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexArrayObject.h" />

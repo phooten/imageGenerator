@@ -7,6 +7,7 @@
 #include<OpenImageIO/imageio.h>
 #include"Shader.h"
 #include"ImageFormatLookup.h"
+#include"Macros.h"
 
 class Texture {
 public:

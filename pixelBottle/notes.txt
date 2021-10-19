@@ -27,7 +27,12 @@ ERRORS ENCOUNTERED:
 				I was linking in the "External include directory" and not "Library Directory"
 
 	*	Non-square PNG doens't load correctly. "snatti89_sunset.png" (non square, RGB) vs "snatti89_sunset1.png" (sqaure 512x512 pixels, RGB)
+			SOLUTIONS:
+				had to do with the format and the png itself. paint3d isn't good for exporting images. 
 
+	*	I'm loading a png, "pixilatedWaterBottle.png" but the edges that should be transparent are actually black. 
+			SOLUTION:
+				glEnable(blending) and glBlendFunc needed to be included after the initialization of the window and other opengl inits
 
 
 
@@ -37,5 +42,6 @@ REFERENECES:
 				#define GLCall(x) GLClearError()
 				static void GLClearError() 
 				static bool GLLogCall(const char* function, const char* file, int line) 
+	-	"GLFW documentation" -	https://www.glfw.org/docs/latest/input_guide.html#input_key 
 	
 
