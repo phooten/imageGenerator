@@ -5,8 +5,8 @@ Current Status:
  Examples:
  
  Base PNG Image:
- [WaterBottle](https://user-images.githubusercontent.com/18239659/141921437-15bc9f6f-1781-4425-94ba-9de1ca6bd0d8.PNG)
+![alt text](https://github.com/phooten/imageGenerator/blob/master/references/Example.PNG?raw=true)
 
-Texture Wrapped around ob!
-[Example](https://user-images.githubusercontent.com/18239659/141921498-676f051b-aeba-4553-a177-60fd2413f1a3.PNG)
-ject:
+Texture Wrapped around object:
+[Example](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
+
