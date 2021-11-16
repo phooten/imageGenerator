@@ -5,8 +5,12 @@ Current Status:
  Examples:
  
  Base PNG Image:
-![alt text](https://github.com/phooten/imageGenerator/blob/master/references/Example.PNG?raw=true)
+
+![alt text](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
+ 
 
 Texture Wrapped around object:
-[Example](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
+
+![alt text](https://github.com/phooten/imageGenerator/blob/master/references/Example.PNG?raw=true)
+
 
