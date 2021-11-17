@@ -7,7 +7,7 @@ Current Status:
  Base PNG Image:
 
 ![alt text](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
- 
+ <img src="https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true" width="100" height="100">
 
 Texture Wrapped around object:
 
