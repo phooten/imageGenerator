@@ -6,11 +6,13 @@ Current Status:
  
  Base PNG Image:
 
-![alt text](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
- <img src="https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true" width="100" height="100">
+ <img src="https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true" width="500" height="500">
 
 Texture Wrapped around object:
 
+ <img src="https://github.com/phooten/imageGenerator/blob/master/references/Example.PNG?raw=true" width="500" height="500">
+
+
+
+![alt text](https://github.com/phooten/imageGenerator/blob/master/references/WaterBottle.PNG?raw=true)
 ![alt text](https://github.com/phooten/imageGenerator/blob/master/references/Example.PNG?raw=true)
-
-
